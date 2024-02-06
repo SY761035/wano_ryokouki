@@ -17,20 +17,23 @@ class Public::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
-
-  protected
-
   def after_sign_in_path_for(resource)
     root_path
   end
+  
+  def after_sign_out_path_for(resource)
+    about_path
+  end
    
+
+  protected
 
   def user_state
     @user = User.find_by(email: params[:user][:email])
     return if @user.nil?
     return unless @user.valid_password?(params[:user][:password])
 
-     if @user.is_active == false
+     if @user == false
         redirect_to :new_user_session
      end
   end
