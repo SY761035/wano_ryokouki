@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'favorites/create'
+    get 'favorites/destroy'
+  end
   # ユーザー用
   # URL /users/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
@@ -22,6 +26,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get "/home/about" => "homes#about", as: "about"
     resources :post_images, only: [:new, :create, :index, :show, :destroy] do
+      resource :favorite, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
     resources :users, only: [:show, :edit, :update]
