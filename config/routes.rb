@@ -1,15 +1,12 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'favorites/create'
-    get 'favorites/destroy'
-  end
+
   # ユーザー用
   # URL /users/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
+
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -29,7 +26,7 @@ Rails.application.routes.draw do
       resource :favorite, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:show, :edit, :update, :index]
     resources :post_images, only: [:new, :create, :index, :show, :destroy]
   end
 

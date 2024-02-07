@@ -5,7 +5,8 @@ class PostImage < ApplicationRecord
   has_many :favorites, dependent: :destroy
   
   validates :event_name, presence: true
-  validates :image, presence: true 
+  # 写真必要ないと思っているのでコメントアウト
+  # validates :image, presence: true 
   validates :caption, presence: true
   
   def get_image
