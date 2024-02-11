@@ -1,4 +1,6 @@
 class Public::PostImagesController < ApplicationController
+  before_action :authenticate_user!, except: [:top]
+  
   def new
     @post_image = PostImage.new
   end
@@ -23,6 +25,12 @@ class Public::PostImagesController < ApplicationController
   end
 
   def edit
+    @post_image = PostImage.find(params[:id])
+    if @post_image.user == current_user
+      render "edit"
+    else
+      redirect_to post_images_path
+    end
   end
 
   def destroy
