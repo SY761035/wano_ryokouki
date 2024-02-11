@@ -1,11 +1,26 @@
 <!-- ユーザーの詳細 -->
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
-</div>
+<div class="card w-50 mx-auto mt-4 shadow-lg">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-2">
+          <%= image_tag @user.get_profile_image(100,100) %>
+        </div>
+        <div class="col-10">
+          <p class="card-title">
+            <%= link_to user_path(@user.id), class:"text-dark" do %>
+              <strong><i class="far fa-user" aria-hidden="true"></i><span> <%= @user.name %></span></strong>
+            <% end %>
+          </p>
+          <p class="card-text">
+            <% if @user.id == current_user.id %>
+            <%= link_to "プロフィール編集", edit_user_path(@user) %><br>
+            <% end %>
+            自己紹介：</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 <!-- ユーザーの投稿一覧 -->
 <div class="card-list-container py-5">

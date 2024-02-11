@@ -7,54 +7,64 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="https://kit.fontawesome.com/13efc1d0bf.js" crossorigin="anonymous"></script>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <!--<header class="shadow-sm">-->
-    <!--  <nav class="navbar navbar-expand-lg navbar-light">-->
-    <!--    <div class="container">-->
-    <!--      <a class="navbar-brand p-3" href="/"><?%= image_tag('logo.png') %></a>-->
-    <!--      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"-->
-    <!--                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">-->
-    <!--        <span class="navbar-toggler-icon"></span>-->
-    <!--      </button>-->
+    <header class="shadow-sm">
+      <!--カラーを＃D5EEDCにした-->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light-green">
+        <div class="container">
+          <a class="navbar-brand p-3" href="/"><%= image_tag('和の旅行記logo1.png') %></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+              <%= link_to new_post_image_path, class: 'nav-link text-dark' do %>
+                <i class="fa-solid fa-message"></i> 投稿フォーム
+              <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to '投稿フォーム', new_post_image_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to user_path(current_user.id),class: 'nav-link text-light' do %>
-                <i class="fas fa-home"></i> Home
+              <%= link_to user_path(current_user.id),class: 'nav-link text-dark' do %>
+                <i class="fa-solid fa-house-user"></i></i> My page
               <% end %>
             </li class="nav-item">
-
-            <!--usersの画面作成までボタン作成しない-->
             <li class="nav-item">
-              <%= link_to users_path ,class: 'nav-link text-light' do %>
+              <%= link_to users_path ,class: 'nav-link text-dark' do %>
                 <i class="fas fa-users"></i> Users
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to post_images_path ,class: 'nav-link text-light' do %>
-                <i class="fas fa-book-open"></i> Posts
+              <%= link_to post_images_path ,class: 'nav-link text-dark' do %>
+                <i class="fa-solid fa-camera-retro"></i> Posts
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
+              <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-dark' do %>
+                <i class="fas fa-sign-out-alt"></i> Log out
+              <% end %>
+            </li>
+            <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "ユーザー一覧", admin_users_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
                 <i class="fas fa-sign-out-alt"></i> Log out
               <% end %>
             </li>
             <% else %>
+            <li class="nav-item">
+              <%= link_to "About", about_path, class: 'nav-link text-dark' %>
+            </li>
             <li class="nav-item">
               <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
             </li>

@@ -5,9 +5,9 @@ class PostImage < ApplicationRecord
   has_many :favorites, dependent: :destroy
   
   validates :event_name, presence: true
-  # 写真必要ないと思っているのでコメントアウト
+  # 写真が必ずしも必要ではないと思っているのでコメントアウト
   # validates :image, presence: true 
-  validates :caption, presence: true
+  validates :caption, presence: true, length: { maximum:1000 }
   
   def get_image
     unless image.attached?
@@ -19,6 +19,18 @@ class PostImage < ApplicationRecord
   
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
+  end
+  
+  def self.search_for(content, method)
+    if method == 'perfect'
+      PostImage.where(event_name: content)
+    elsif method == 'forward'
+      PostImage.where('event_name LIKE ?', content + '%')
+    elsif method == 'backward'
+      PostImage.where('event_name LIKE ?', '%' + content)
+    else
+      PostImage.where('event_name LIKE ?', '%' + content + '%')
+    end
   end
 
 end

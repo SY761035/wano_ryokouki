@@ -6,8 +6,11 @@ class User < ApplicationRecord
 
   has_many :post_images, dependent: :destroy
   has_many :post_comments, dependent: :destroy
-  has_one_attached :profile_image
   has_many :favorites, dependent: :destroy
+  has_one_attached :profile_image
+
+  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :introduction, length: { maximum: 50 },  uniqueness: true
 
 
   def get_profile_image(width, height)
@@ -17,5 +20,17 @@ class User < ApplicationRecord
     end
     # 受け取った引数のサイズに変換 [width, height]
     profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def self.search_for(content, method)
+    if method == 'perfect'
+      User.where(name: content)
+    elsif method == 'forward'
+      User.where('name LIKE ?', content + '%')
+    elsif method == 'backward'
+      User.where('name LIKE ?', '%' + content)
+    else
+      User.where('name LIKE ?', '%' + content + '%')
+    end
   end
 end
