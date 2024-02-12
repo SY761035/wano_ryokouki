@@ -4,6 +4,10 @@
 <div class="card-list-container py-5">
   <% @users.each do |user| %>
   <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <%#= link_to user_path(user.id) do %>
+    <%#= user.name %>
+      <%#= image_tag user.post_images.first.get_image, class:"card-img-top"; %>
+    <%# end %>
     <div class="card-body">
       <div class="row">
         <div class="col-2">
@@ -15,7 +19,8 @@
               <strong><i class="far fa-user"></i><span> <%= user.name %></span></strong>
             <% end %>
           </p>
-          <p class="card-text">自己紹介：<%#= @user.introduction %></p>
+          
+          <p class="card-text">自己紹介：</p>
         </div>
       </div>
     </div>

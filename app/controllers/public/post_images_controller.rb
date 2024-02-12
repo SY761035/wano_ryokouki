@@ -9,7 +9,7 @@ class Public::PostImagesController < ApplicationController
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
     if @post_image.save
-      redirect_to post_images_path
+      redirect_to post_images_path, notice: "投稿に成功しました."
     else
       render :new
     end
@@ -26,10 +26,14 @@ class Public::PostImagesController < ApplicationController
 
   def edit
     @post_image = PostImage.find(params[:id])
-    if @post_image.user == current_user
-      render "edit"
+  end
+  
+  def update
+    @post_image = PostImage.find(params[:id])
+    if @post_image.update(post_image_params)
+      redirect_to post_image_path(@post_image.id), notice: "更新に成功しました."
     else
-      redirect_to post_images_path
+      render :edit
     end
   end
 
@@ -42,6 +46,6 @@ class Public::PostImagesController < ApplicationController
   private
 
   def post_image_params
-    params.require(:post_image).permit(:event_name, :image, :caption)
+    params.require(:post_image).permit(:event_name, :image, :caption, :genre_id)
   end
 end
