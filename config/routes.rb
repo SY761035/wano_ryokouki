@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "homes#top"
-    resources :genres, only: [:index, :create, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update, :destroy]
     resources :users, only: [:index, :show, :edit, :update, :destroy]
   end
 
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get "/home/about" => "homes#about", as: "about"
     get "search", to: "searches#search"
-    resources :post_images, only: [:new, :create, :index, :show, :destroy] do
+    resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resource :favorite, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end

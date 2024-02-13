@@ -1,4 +1,36 @@
-<p>投稿内容編集</p>
-<%#= form_with model: @user.post_image, url: post_image_path, method: :patch, local: true do |f| %>
-<%#= f.submit'編集内容を保存', class: "btn btn-sm btn-success" %>
-<%# end %>
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">投稿内容編集</h5>
+      <div class="form-body p-4">
+        <% if @post_image.errors.any? %>
+          <ul class="alert alert-danger" role="alert">
+            <h6 class="alert-heading">
+              <%= @post_image.errors.count %>件のエラーが発生しました
+            </h6>
+            <% @post_image.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <%= form_with model: @post_image do |f| %>
+          <%= f.file_field :image, accept: "image/*", class: "w-100" %>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-suitcase"></i></span>
+            </div>
+            <%= f.text_field :event_name, class:"form-control", placeholder:"旅行先(都道府県)" %>
+            <span class="input-group-prepend aria-hidden="true""><%= f.label :宿泊数 %>
+            <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %></span>
+          </div>
+          <%= f.text_area :caption, class:"form-control", rows:"3", placeholder:"コメント入力" %>
+          <hr>
+          <%= f.submit '変更を保存', class:"btn btn-lg btn-block btn-info mt-4" %>
+          <%= link_to :back do %>
+          <button>戻る</button>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

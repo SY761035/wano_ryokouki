@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2024_02_06_085115) do
     t.string "event_name"
     t.text "caption"
     t.integer "user_id"
+    t.integer "genre_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
