@@ -1,3 +1,6 @@
+<div>
+  <%= flash[:notice] %>
+</div>
 <div class="card-list-container py-5">
   <div class="card w-50 mx-auto mt-4 shadow-lg">
     <%= image_tag @post_image.get_image %>
@@ -6,45 +9,24 @@
       <p>宿泊日数：<%= @post_image.genre.name %></p>
       <p>説明：<%= @post_image.caption %></p>
       <p>投稿ユーザー画像：<%= image_tag @post_image.user.get_profile_image(100,100) %></p>
-      <p>ユーザーネーム：<%= @post_image.user.name %></p>
+      <p>ユーザー名：<%= @post_image.user.name %></p>
       <p>投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
       <% if @post_image.user == current_user %>
-        <%= link_to "編集", edit_post_image_path(@post_image) %> |
-        <%= link_to "投稿削除", post_image_path(@post_image), method: :delete %>
+        <%= link_to "投稿編集", edit_post_image_path(@post_image), class: "btn btn-sm btn-success" %> |
+        <%= link_to "投稿削除", post_image_path(@post_image), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger" %>
       <% end %>
-    
-      <% if @post_image.favorited_by?(current_user) %>
-        <p>
-          <%= link_to post_image_favorite_path(@post_image), method: :delete do %>
-            ♥<%= @post_image.favorites.count %> いいね
-          <% end %>
-        </p>
-        <% else %>
-        <p>
-          <%= link_to post_image_favorite_path(@post_image), method: :post do %>
-            ♡<%= @post_image.favorites.count %> いいね
-          <% end %>
-        </p>
-      <% end %>
-    
-  
-      <div>
-        <p>コメント件数：<%= @post_image.post_comments.count %></p>
-        <% @post_image.post_comments.each do |post_comment| %>
-          <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-          <%= post_comment.user.name %>
-          <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-          <% if post_comment.user == current_user %>
-            <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete %>
-          <% end %>
-        <% end %>
+
+      <div><%= link_to "一覧ページに戻る", post_images_path, class: "btn btn-sm btn-info" %></div>
+
+      <!--いいね機能-->
+      <div id="favorite_btn_<%= @post_image.id %>">
+        <%= render "public/favorites/btn", post_image: @post_image %>
       </div>
-      <div>
-        <%= form_with model: [@post_image, @post_comment] do |f| %>
-          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-          <%= f.submit "送信する" %>
-        <% end %>
+      <!--コメント機能-->
+      <div id="comment_area">
+        <%= render "public/post_comments/comment", post_image: @post_image %>
       </div>
+      <div><%= render "public/post_comments/form", post_image: @post_image, post_image_comment: @post_image_comment %></div>
     </div>
   </div>
 </div>

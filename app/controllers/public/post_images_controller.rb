@@ -1,5 +1,6 @@
 class Public::PostImagesController < ApplicationController
   before_action :authenticate_user!, except: [:top]
+  before_action :correct_post_image,only: [:edit,:update]
   
   def new
     @post_image = PostImage.new
@@ -16,7 +17,7 @@ class Public::PostImagesController < ApplicationController
   end
 
   def index
-    @post_images = PostImage.page(params[:page])
+    @post_images = PostImage.page(params[:page]).per(15)
   end
 
   def show
@@ -44,6 +45,13 @@ class Public::PostImagesController < ApplicationController
   end
   
   private
+  
+  def correct_post_image
+        @post_image = PostImage.find(params[:id])
+    unless @post_image.user.id == current_user.id
+      redirect_to post_images_path
+    end
+  end
 
   def post_image_params
     params.require(:post_image).permit(:event_name, :image, :caption, :genre_id)
