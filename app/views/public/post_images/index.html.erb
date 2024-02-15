@@ -1,3 +1,6 @@
+<div>
+  <%= flash[:notice] %>
+</div>
 <div class="d-flex justify-content-center mb-2">
   <%= render "public/searches/form" %>
 </div>
@@ -22,13 +25,14 @@
               </p>
               <p class="card-text">宿泊日数：<%= post_image.genre.name %></p>
               <span><i class="fas fa-user"></i> By <%= post_image.user.name %> ｜ </span>
-              <span><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id), class:"text-dark" %></span>
+              <span><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id), class:"text-dark" %> ｜ </span>
+              <span id="favorite_btn_<%= post_image.id %>"><%= render "public/favorites/btn", post_image: post_image %></span>
             </div>
           </div>
         </div>
       </div>
+      <% end %>
     </div>
   </div>
-  <% end %>
   <%= paginate @post_images %>
 </div>

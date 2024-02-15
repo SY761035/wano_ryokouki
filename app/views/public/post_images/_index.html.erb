@@ -3,8 +3,8 @@
     <tr>
       <th></th>
       <th>都道府県</th>
+      <th>宿泊日数</th>
       <th>コメント</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +16,7 @@
           <% end %>
         </td>
         <td><%= link_to post_image.event_name,post_image %></td>
+        <td><%= post_image.genre.name %></td>
         <td><%= post_image.caption %></td>
       </tr>
     <% end %>
