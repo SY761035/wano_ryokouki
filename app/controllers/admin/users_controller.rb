@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @users = User.all.page(params[:page]).per(10)
@@ -21,7 +22,8 @@ class Admin::UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy
-    redirect_to users_path
+    flash[:notice] = 'ユーザーを削除しました。'
+    redirect_to admin_users_path
   end
 
   private

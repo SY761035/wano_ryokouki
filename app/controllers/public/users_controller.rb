@@ -1,7 +1,8 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:top]
   before_action :correct_user,only: [:edit,:update]
-  
+  before_action :set_user, only: [:likes]
+
   def show
     @user = User.find(params[:id])
     @post_images = @user.post_images.page(params[:page]).per(15)
@@ -24,8 +25,24 @@ class Public::UsersController < ApplicationController
     @users = User.all.page(params[:page]).per(10)
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:notice] = 'ユーザーを削除しました。'
+    redirect_to root_path #削除に成功すればrootページに戻る
+  end
+
+  def favorites
+    likes = Favorite.where(user_id: params[:id]).pluck(:post_image_id)
+    @post_images = PostImage.where(id: likes).page(params[:page]).per(15)
+  end
+
   private
-  
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   def correct_user
         @user = User.find(params[:id])
     unless @user.id == current_user.id

@@ -1,21 +1,33 @@
-<div class="cover align-middle">
-  <!--<div class="row">-->
-  <!--  <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>-->
-      <div class="text-center">
-        <h1 class="title mb-2"><i class="fa-solid fa-plane"></i>ようこそ<strong>和の旅行記</strong>  へ!!</h1>
-        <p class="sub-title">〜国内旅行の出来事や写真を投稿し共有できます〜</p>
+<div>
+  <%= flash[:notice] %>
+</div>
+<body>
+  <div class="content">
+    <div class="left">
+      <div class="text-area">
+        <h5 class="title">
+          <span class="ja">国内旅行の<br>思い出</span>
+        </h5>
+        <p class="copy">
+          国内旅行での思い出を共有できます。<br class="pc">
+          実際に旅行をした際にあった注意点や<br class="pc">
+          素敵な場所の情報を投稿できます。<br class="pc">
+          備忘録としても利用いただけます。
+        </p>
         <% if user_signed_in? %>
         <% elsif admin_signed_in? %>
         <% else %>
-          <div class="btn-wrapper col-10 mx-auto">
-            <div class="row">
-              <%= link_to 'Log in',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
-            </div>
-          <div class="row">
-              <%= link_to 'Sign up',new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
-          </div>
+        <div>
+          <%= link_to 'Log in',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+        </div>
+        <div>
+          <%= link_to 'Sign up',new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
         </div>
         <% end %>
-  <!--  </div>-->
-  <!--</div>-->
-</div>
+      </div>
+    </div>
+    <div class="right">
+      <img src="/assets/japan.jpg" alt="">
+    </div>
+  </div>
+</body>

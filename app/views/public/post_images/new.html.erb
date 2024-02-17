@@ -14,7 +14,7 @@
           </ul>
         <% end %>
         <%= form_with model: @post_image do |f| %>
-          <%= f.file_field :image, accept: "image/*", class: "w-100" %>
+          <%= f.file_field :images, accept: "image/*", class: "w-100" %>
           <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-suitcase"></i></span>

@@ -13,7 +13,11 @@
       <p>投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
       <% if @post_image.user == current_user %>
         <%= link_to "投稿編集", edit_post_image_path(@post_image), class: "btn btn-sm btn-success" %> |
-        <%= link_to "投稿削除", post_image_path(@post_image), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger" %>
+        <% if user_signed_in? && @user == current_user %>
+          <% unless @user.email == "test@example.com" then %>
+            <%= link_to "投稿削除", post_image_path(@post_image), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger" %>
+          <% end %>
+        <% end %>
       <% end %>
 
       <div><%= link_to "一覧ページに戻る", post_images_path, class: "btn btn-sm btn-info" %></div>
