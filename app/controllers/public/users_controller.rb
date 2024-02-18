@@ -2,6 +2,7 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:top]
   before_action :correct_user,only: [:edit,:update]
   before_action :set_user, only: [:likes]
+  before_action :ensure_guest_user, only: [:edit]
 
   def show
     @user = User.find(params[:id])
@@ -49,6 +50,14 @@ class Public::UsersController < ApplicationController
       redirect_to users_path
     end
   end
+  
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.email == "guest@example.com"
+      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
+  end  
+  
 
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
