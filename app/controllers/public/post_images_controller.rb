@@ -1,7 +1,7 @@
 class Public::PostImagesController < ApplicationController
   before_action :authenticate_user!, except: [:top]
   before_action :correct_post_image,only: [:edit,:update]
-  
+
   def new
     @post_image = PostImage.new
   end
@@ -28,7 +28,7 @@ class Public::PostImagesController < ApplicationController
   def edit
     @post_image = PostImage.find(params[:id])
   end
-  
+
   def update
     @post_image = PostImage.find(params[:id])
     if @post_image.update(post_image_params)
@@ -43,9 +43,9 @@ class Public::PostImagesController < ApplicationController
     post_image.destroy
     redirect_to post_images_path
   end
-  
+
   private
-  
+
   def correct_post_image
         @post_image = PostImage.find(params[:id])
     unless @post_image.user.id == current_user.id

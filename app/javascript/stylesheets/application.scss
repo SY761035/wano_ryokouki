@@ -1,32 +1,118 @@
 @use '~bootstrap/scss/bootstrap';
-
+// ヘッダー・フッター
 .bg-light-green {
-  background-color: #D5EEDC ;
+  background-color: #B6F1AA ;
 }
 
-// ユーザーホームページ
-.title {
-  font-family: cursive;
-}
+// トップページ
 
-.sub-title {
-  font-family: serif;
+body {
+  font-size: 100%;
+  font-family: 'Heebo', sans-serif;
+  letter-spacing: 0.2em;
 }
-
-.cover {
-  height: 100%;
+img {
+  max-width: 100%;
+}
+.content {
+  display: flex;
   width: 100%;
-  display: table;
-  background-image: url(/assets/images/日本.jpg);
-  background-color:rgba(255,255,255,0.4);
-  background-blend-mode:lighten;
-  background-size: 100% 100%;
+  margin: 100px auto;
+}
+.content .left {
+  width: 35%;
+  position: relative;
 }
 
-.text-center {
-  display: table-cell;
-  vertical-align: middle;
+// 疑似要素（before）で白いボックスを作り画像の上に重ねる
+// 「transform: skewX(-18deg);」で角度をつけて平行四辺形にする
+// positionとrightで画像の上に重ねる
+
+.content .left::before {
+  content: "";
+  width: 163px;
+  height: 100%;
+  background: #fff;
+  position: absolute;
+  right: -81px;
+  transform: skewX(-18deg);
 }
+.content .left .text-area {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+}
+.content .left .title {
+  line-height: 1;
+  margin-bottom: 56px;
+}
+
+// 「display: block;」を設定することで、
+// 改行されてmargin-bottomが効くようになる。
+// ※spanタグはデフォルトではinlineのため、
+// 改行もされないしmargin-bottomも効かない
+
+.content .left .title .ja {
+  display: block;
+  font-size: 4.375rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+.content .left .copy {
+  font-size: 0.875rem;
+}
+.content .right {
+  width: 65%;
+}
+
+// 「vertical-align: bottom;」で画像の下にできる隙間を消す
+// 「object-fit: cover;」で高さを500pxで固定したままトリミングする
+// ※「object-fit」はIEでは正しく動作しないため注意が必要
+
+.content .right img {
+  width: 100%;
+  height: 500px;
+  vertical-align: bottom;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 900px) {
+  
+  // PC表示の時だけ表示させたい要素に設定しておくことで、
+  // スマホ表示は非表示になる。。
+  
+  .pc {
+    display: none;
+  }
+  .content {
+    flex-direction: column;
+  }
+  .content .left {
+    width: 100%;
+    padding: 0 16px;
+    margin-bottom: 20px;
+  }
+  
+  // 「content: none;」を設定することで疑似要素が非表示になるので、
+  // 画像に重ねていた四角いボックスが消える。
+
+  .content .left::before {
+    content: none;
+  }
+  .content .left .title .ja {
+    font-size: 2.25rem;
+  }
+  
+  // 「position: static;」で absolute を解除する
+  
+  .content .left .text-area {
+    position: static;
+  }
+  .content .right {
+    width: 100%;
+  }
+}
+
 
 
 // 投稿一覧画面

@@ -4,12 +4,12 @@ class PostImage < ApplicationRecord
   belongs_to :genre
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
+
   validates :event_name, presence: true
   # 写真が必ずしも必要ではないと思っているのでコメントアウト
-  # validates :image, presence: true 
+  # validates :image, presence: true
   validates :caption, presence: true, length: { maximum:1000 }
-  
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.png')
@@ -17,11 +17,11 @@ class PostImage < ApplicationRecord
     end
     image
   end
-  
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
   def self.search_for(content, method)
     if method == 'perfect'
       PostImage.where(event_name: content)

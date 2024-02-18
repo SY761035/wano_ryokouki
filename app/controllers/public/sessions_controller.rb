@@ -17,14 +17,27 @@ class Public::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+  
+  # ゲストログイン
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to user_path(user.id), notice: "ゲストでログインしました。"
+  end
+  
+  def destroy
+    reset_guest_data if current_user.email == 'guest@example.com'
+    super
+  end
+
   def after_sign_in_path_for(resource)
     root_path
   end
-  
+
   def after_sign_out_path_for(resource)
     about_path
   end
-   
+
 
   protected
 

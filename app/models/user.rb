@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  validates :introduction, length: { maximum: 50 },  uniqueness: true
+  validates :introduction, length: { maximum: 50 }
 
 
   def get_profile_image(width, height)
@@ -31,6 +31,13 @@ class User < ApplicationRecord
       User.where('name LIKE ?', '%' + content)
     else
       User.where('name LIKE ?', '%' + content + '%')
+    end
+  end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.name = "guestuser"
+      user.password = SecureRandom.urlsafe_base64
     end
   end
 end
