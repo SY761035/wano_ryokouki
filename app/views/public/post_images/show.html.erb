@@ -1,0 +1,57 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+<div class="post-detail py-5 bg-light">
+  <div class="card w-75 mx-auto mt-4 shadow-lg">
+    <%= image_tag @post_image.get_image, class:"card-img-top"; %>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12">
+          <%= image_tag @post_image.user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %>
+        </div>
+        <div class="col-10">
+          <p class="card-title">
+            <span><i class="far fa-flag"></i>旅行先：<%= @post_image.event_name %></span>
+          </p>
+          <p class="card-title">
+            <span>宿泊日数：<%= @post_image.genre.name %> ｜</span>
+            <span>カテゴリー：
+              <% if @post_image.category.present? %>
+                <%=link_to @post_image.category,tagsearches_search_path(content:@post_image.category)%>
+              <% end %>
+            </span>
+          </p>
+          <p class="card-title">
+            説明：<%= @post_image.caption %>
+          </p>
+          <p class="card-title">
+            <span><i class="fas fa-user"></i>By <%= @post_image.user.name %> ｜</span>
+            <span><i class="fa fa-calendar"></i><%= @post_image.created_at.strftime('%Y/%m/%d') %> ｜</span>
+            <span><i class="fa fa-comment"></i><%= link_to "#{@post_image.post_comments.count}", post_image_path(@post_image.id), class:"text-dark" %> ｜</span>
+            <!--いいね機能-->
+            <span id="favorite_btn_<%= @post_image.id %>">
+              <%= render "public/favorites/btn", post_image: @post_image %>
+            </span>
+          </p>
+          <p class="card-title">
+            <%= link_to "一覧ページに戻る", post_images_path, class: "btn btn-sm btn-info" %>
+            <% if @post_image.user == current_user %>
+              |<%= link_to "投稿編集", edit_post_image_path(@post_image), class: "btn btn-sm btn-success" %> |
+              <%= link_to "投稿削除", post_image_path(@post_image), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger" %>
+              <% if user_signed_in? && @user == current_user %>
+                <% unless @user.email == "test@example.com" then %>
+                  <%= link_to "投稿削除", post_image_path(@post_image), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger" %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </p>
+          <!--コメント機能-->
+          <div id="comments card-text">
+            <%= render "public/post_comments/comment", post_image: @post_image %>
+          </div>
+          <div><%= render "public/post_comments/form", post_image: @post_image, post_image_comment: @post_image_comment %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

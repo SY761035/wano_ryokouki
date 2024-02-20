@@ -1,0 +1,24 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>都道府県</th>
+      <th>宿泊日数</th>
+      <th>コメント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% post_images.each do |post_image| %>
+      <tr>
+        <td><%= link_to(post_image.user) do %>
+          <!--↓user.rbにget_profile_image(width, height)と記述しているためimage(サイズ,サイズ)にする-->
+          <%= image_tag post_image.user.get_profile_image(80,80) %>
+          <% end %>
+        </td>
+        <td><%= link_to post_image.event_name,post_image %></td>
+        <td><%= post_image.genre.name %></td>
+        <td><%= post_image.caption %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

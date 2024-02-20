@@ -1,0 +1,36 @@
+<div class = "container">
+  <div class = "row">
+    <div class "col-md-4 px-sm-0 mx-auto ">
+      <h2>ユーザー一覧</h2>
+    </div>
+    <div class = "col-md-7 offset-md-1 mt-5 pt-2 ">
+      <table class = "table">
+        <thead>
+          <tr>
+            <th class = "table-active">ユーザーID</th>
+            <th class = "table-active">ユーザー名</th>
+            <th class = "table-active">メールアドレス</th>
+            <th class = "table-active">自己紹介</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |users| %>
+          <tr>
+            <td ><%= users.id %></td>
+            <td >
+              <%= link_to admin_user_path(users.id) do %>
+              <%= users.name %>
+              <% end %>
+            </td>
+            <td><%= users.email %></td>
+            <td><%= users.introduction %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="col d-flex justify-content-center" >
+      <%= paginate @users %>
+      </div>
+    </div>
+  </div>
+</div>

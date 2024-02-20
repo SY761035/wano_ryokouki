@@ -1,0 +1,32 @@
+<div class="cover-index">
+  <div class="container">
+    <ul class="row justify-content-center">
+      <% @post_images.each do |post_image| %>
+      <il class="card w-50 mx-auto mt-4 shadow-lg">
+          <%= image_tag post_image.get_image, class:"card-img-top"; %>
+        <div class="card-body">
+          <div class="row g-4">
+            <div class="col-lg-4 col-sm-6">
+              <%= image_tag post_image.user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %>
+            </div>
+            <div class="col-10 mt-4 mb-2">
+              <p class="card-title">
+                  <strong><i class="far fa-flag"></i><span><%= post_image.event_name %></span></strong>
+              </p>
+              <p class="card-text">宿泊日数：<%= post_image.genre.name %></p>
+              <p>
+                <% if post_image.category.present? %>
+                  <%= post_image.category%>
+                <% end %>
+              </p>
+              <span><i class="fas fa-user"></i> By <%= post_image.user.name %> ｜ </span>
+              <span><%= link_to "#{post_image.post_comments.count} コメント", admin_post_image_path(post_image.id), class:"text-dark" %></span>
+            </div>
+          </div>
+        </div>
+      </il>
+      <% end %>
+    </ul>
+  </div>
+  <%= paginate @post_images %>
+</div>

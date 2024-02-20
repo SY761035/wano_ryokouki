@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <h4 class="title bg-light"><strong><%= @user.name %>さんの詳細</strong></h4>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <th>ユーザーID</th>
+            <td><%= @user.id %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <th>自己紹介</th>
+            <td><%= @user.introduction %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2 offset-2">
+      <%= link_to "退会させる",admin_user_path(@user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会させますか？", class: "btn btn-sm btn-danger" %>
+    </div>
+    <div class="col-3">
+      <%= link_to "投稿一覧を見る", admin_post_images_path(user_show_id: @user.id), class:'btn btn-primary px-3' %>
+    </div>
+  </div>
+</div>
