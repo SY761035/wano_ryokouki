@@ -10,9 +10,4 @@ class Public::SearchesController < ApplicationController
       @records = PostImage.search_for(@content, @method)
     end
   end
-  
-  def genre_search
-    @genre_id = params[:genre_id]
-    @post_images = PostImage.where(genre_id: @genre_id)
-  end
 end

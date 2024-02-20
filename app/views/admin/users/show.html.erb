@@ -25,7 +25,7 @@
       <%= link_to "退会させる",admin_user_path(@user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会させますか？", class: "btn btn-sm btn-danger" %>
     </div>
     <div class="col-3">
-      <%#=link_to "投稿一覧を見る", admin_user_path, class:'btn btn-primary px-3' %>
+      <%= link_to "投稿一覧を見る", admin_post_images_path(user_show_id: @user.id), class:'btn btn-primary px-3' %>
     </div>
   </div>
 </div>

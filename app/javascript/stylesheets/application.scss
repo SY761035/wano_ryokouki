@@ -1,11 +1,11 @@
 @use '~bootstrap/scss/bootstrap';
-// ヘッダー・フッター
+
+// フッターカラー
 .bg-light-green {
   background-color: #B6F1AA ;
 }
 
 // トップページ
-
 body {
   font-size: 100%;
   font-family: 'Heebo', sans-serif;
@@ -76,6 +76,35 @@ img {
   object-fit: cover;
 }
 
+// Mainvisual
+#mainvisual {
+  margin-bottom: 80px;
+}
+// About
+#about .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#about img {
+  width: 100px;
+  height: 100px;
+  border-radius: 70%;
+  margin-right: 30px;
+}
+#about .text {
+  text-align: left;
+}
+// 写真
+#photo ul {
+  display: flex;
+  justify-content: space-between;
+}
+#photo li {
+  width: 32%;
+}
+
+
 @media screen and (max-width: 900px) {
   
   // PC表示の時だけ表示させたい要素に設定しておくことで、
@@ -114,23 +143,21 @@ img {
 }
 
 
-
-// 投稿一覧画面
-.cover-index {
-  height: 100%;
-  width: 100%;
-}
-
-.one-post {
-  margin: 5px 30px;
-}
-
-.one-post img:hover {
-  transform: scale(1.2,1.2);
-}
-
-.caption {
-  color: black;
-  font-size: 20px;
-  text-decoration: none;
+@media screen and (max-width: 600px) {
+  #mainvisual img {
+    height: calc(100vh - 60px);
+  }
+  #about .content {
+    flex-direction: column;
+  }
+  #about img {
+    margin-right: 0;
+  }
+  #photo ul {
+    flex-direction: column;
+  }
+  #photo li {
+    width: 100%;
+    margin-bottom: 30px;
+  }
 }

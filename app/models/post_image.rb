@@ -9,6 +9,7 @@ class PostImage < ApplicationRecord
   # 写真が必ずしも必要ではないと思っているのでコメントアウト
   # validates :image, presence: true
   validates :caption, presence: true, length: { maximum:1000 }
+  validates :category, presence: true
 
   def get_image
     unless image.attached?

@@ -2,35 +2,79 @@
   <%= flash[:notice] %>
 </div>
 <body>
-  <div class="content">
-    <div class="left">
-      <div class="text-area">
-        <h5 class="title">
-          <span class="ja">国内旅行の<br>思い出</span>
-        </h5>
-        <p class="copy">
-          国内旅行での思い出を共有できます。<br class="pc">
-          実際に旅行をした際にあった注意点や<br class="pc">
-          素敵な場所の情報を投稿できます。<br class="pc">
-          備忘録としても利用いただけます。
-        </p>
-        <% if user_signed_in? %>
-        <% elsif admin_signed_in? %>
-        <% else %>
-        <div>
-          <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+  <main>
+    <div id="mainvisual">
+      <div class="content">
+        <div class="left">
+          <div class="text-area">
+            <h5 class="title">
+              <span class="ja">国内旅行の<br>思い出</span>
+            </h5>
+            <p class="copy">
+              国内旅行での思い出を共有できます。<br class="pc">
+              実際に旅行をした際にあった注意点や<br class="pc">
+              素敵な場所の情報を投稿できます。<br class="pc">
+            </p>
+            <% if user_signed_in? %>
+            <% elsif admin_signed_in? %>
+            <% else %>
+              <div>
+                <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+              </div>
+              <div>
+                <%= link_to 'Log in',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+              </div>
+              <div>
+                <%= link_to 'Sign up',new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+              </div>
+            <% end %>
+          </div>
         </div>
-        <div>
-          <%= link_to 'Log in',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+        <div class="right">
+          <img src="/assets/japan.jpg" alt="">
         </div>
-        <div>
-          <%= link_to 'Sign up',new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
-        </div>
-        <% end %>
       </div>
     </div>
-    <div class="right">
-      <img src="/assets/japan.jpg" alt="">
-    </div>
-  </div>
+
+    <section id="about" class="wrapper">
+      <h2 class="section-title text-center">＜About＞</h2>
+      <div class="content">
+        <img src="/assets/huji.jpg" alt="">
+        <div class="text">
+          <h3 class="content-title">和の旅行記では</h3>
+          <p>
+            国内旅行中で撮影した素敵な写真やコメントを投稿できる<br>
+            サイトになっております。<br>
+            また、備忘録としてのご利用して頂くことが出来ます。<br>
+            旅行された方だけでなく、今後ご旅行される予定がある方にも<br>
+            プラン立ての参考に投稿一覧の内容をご覧いただけたらと<br>
+            思っております。<br>
+            お気軽にご利用してください。
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="photo" class="wrapper">
+      <h2 class="section-title text-center">国内旅行写真</h2>
+      <ul>
+        <li>
+          <img src="/assets/hiroshima.jpg" alt="">
+          <h3 class="content-title">広島県</h3>
+          <p>宮島の嚴島神社</p>
+        </li>
+        <li>
+          <img src="/assets/okayama.jpg" alt="">
+          <h3 class="content-title">岡山県</h3>
+          <p>岡山後楽園</p>
+        </li>
+        <li>
+          <img src="/assets/okinawa.jpeg" alt="">
+          <h3 class="content-title">沖縄県</h3>
+          <p>石垣島の石垣シーサイドホテル前</p>
+        </li>
+      </ul>
+    </section>
+  </main>
 </body>
