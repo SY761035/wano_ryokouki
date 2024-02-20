@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'post_images/index'
+  end
   # ユーザー用
   # URL /users/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
@@ -16,12 +19,14 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
     resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :post_images, only: [:index, :show, :destroy]
   end
 
   scope module: :public do
     root to: "homes#top"
     get "/home/about" => "homes#about", as: "about"
     get "search", to: "searches#search"
+    get "tagsearches/search", to: "tagsearches#search"
     resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resource :favorite, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
