@@ -20,10 +20,10 @@ module Wanoryokouki
     # config.eager_load_paths << Rails.root.join("extras")
     
     config.after_initialize do
-      # guest_user = User.find_or_create_by(email: 'guest@example.com')
+      guest_user = User.find_or_create_by(email: 'guest@example.com')
         
-      # guest_user.post_image.each { |post_image| post_image.destroy } if guest_user.post_images.any?
-      # guest_user.post_comments.each { |comment| comment.destroy } if guest_user.post_comments.any?
+      guest_user.post_image.each { |post_image| post_image.destroy } if guest_user.post_images.any?
+      guest_user.post_comments.each { |comment| comment.destroy } if guest_user.post_comments.any?
     end
   end
   
