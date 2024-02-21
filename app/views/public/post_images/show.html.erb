@@ -34,9 +34,9 @@
             </span>
           </p>
           <p class="card-title">
-            <%= link_to "一覧ページに戻る", post_images_path, class: "btn btn-sm btn-info" %>
+            <%= link_to "投稿一覧へ", post_images_path, class: "btn btn-sm btn-info" %>
             <% if @post_image.user == current_user %>
-              |<%= link_to "投稿編集", edit_post_image_path(@post_image), class: "btn btn-sm btn-success" %> |
+              | <%= link_to "投稿編集", edit_post_image_path(@post_image), class: "btn btn-sm btn-success" %> |
               <%= link_to "投稿削除", post_image_path(@post_image), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger" %>
               <% if user_signed_in? && @user == current_user %>
                 <% unless @user.email == "test@example.com" then %>
@@ -52,6 +52,13 @@
           <div><%= render "public/post_comments/form", post_image: @post_image, post_image_comment: @post_image_comment %></div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="bottom bg-light-green">
+    <div class="text-center mb-auto pb-3 pt-3">
+      ©2024 sawada.和の旅行記.
     </div>
   </div>
 </div>

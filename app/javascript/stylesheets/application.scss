@@ -99,9 +99,11 @@ img {
 #photo ul {
   display: flex;
   justify-content: space-between;
+  padding: 25px;
 }
 #photo li {
   width: 32%;
+  list-style: none;
 }
 
 
