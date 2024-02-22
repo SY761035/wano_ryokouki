@@ -2,7 +2,7 @@
 <html>
   <head>
     <!--favicon設定-->
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="icon" type="image/png" href="<%= asset_path("favicon.png") %>">
     <title>和の旅行記</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -11,12 +11,14 @@
     <script src="https://kit.fontawesome.com/13efc1d0bf.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!--フォント-->
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
   </head>
 
   <header class="shadow-sm">
     <nav class="navbar navbar-expand-lg navbar-light bg-light-green">
       <div class="container">
-        <a class="navbar-brand p-1" href="/"><%= image_tag 'logo.png', :size =>'170x80' %></a>
+        <a class="navbar-brand p-1" href="/"><%= image_tag 'logo.png', :size =>'150x70' %></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -63,7 +65,7 @@
             </li>
             <% else %>
             <li class="nav-item">
-              <%= link_to "About", "#about", class: 'nav-link text-dark' %>
+              <%= link_to "About", "/#about", class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
               <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
@@ -81,4 +83,13 @@
   <main class="mb-auto">
     <%= yield %>
   </main>
+
+  <footer class="footer">
+    <div class="bottom bg-light-green">
+       <!--カラーを＃B6F1AAにした-->
+      <div class="text-center mb-auto pb-3 pt-3">
+        ©2024 sawada.和の旅行記.
+      </div>
+    </div>
+  </footer>
 </html>

@@ -1,4 +1,9 @@
 @use '~bootstrap/scss/bootstrap';
+@use 'post_images.scss';
+//
+.nav-item .li{
+font-size: 1.5em;
+}
 
 // フッターカラー
 .bg-light-green {
@@ -108,10 +113,10 @@ img {
 
 
 @media screen and (max-width: 900px) {
-  
+
   // PC表示の時だけ表示させたい要素に設定しておくことで、
   // スマホ表示は非表示になる。。
-  
+
   .pc {
     display: none;
   }
@@ -123,7 +128,7 @@ img {
     padding: 0 16px;
     margin-bottom: 20px;
   }
-  
+
   // 「content: none;」を設定することで疑似要素が非表示になるので、
   // 画像に重ねていた四角いボックスが消える。
 
@@ -133,9 +138,9 @@ img {
   .content .left .title .ja {
     font-size: 2.25rem;
   }
-  
+
   // 「position: static;」で absolute を解除する
-  
+
   .content .left .text-area {
     position: static;
   }

@@ -46,7 +46,7 @@
             <% end %>
           </p>
           <!--コメント機能-->
-          <div id="comments card-text">
+          <div id="comment_area" class="comments card-text">
             <%= render "public/post_comments/comment", post_image: @post_image %>
           </div>
           <div><%= render "public/post_comments/form", post_image: @post_image, post_image_comment: @post_image_comment %></div>
