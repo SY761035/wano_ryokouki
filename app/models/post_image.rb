@@ -18,13 +18,13 @@ class PostImage < ApplicationRecord
     end
     image
   end
-  
+    # post_image.indexの画像サイズ設定 
   def get_thumbnail(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.png')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpg')
     end
-    # 受け取った引数のサイズに変換 [width, height]
+    # 受け取った引数のサイズに変換 [width, height]、1/2サイズで表示
     image.variant( gravity: :center, resize: "#{width}x#{height}", crop: "#{width / 2}x#{height / 2}+0+0" ).processed
   end
   

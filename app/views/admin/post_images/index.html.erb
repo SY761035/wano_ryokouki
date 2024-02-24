@@ -1,6 +1,6 @@
-<div class="cover-index">
+<div class="container py-5">
   <div class="container">
-    <ul class="row justify-content-center">
+    <ul class="row row-cols-1 row-cols-md-3 g-4 py-5">
       <% @post_images.each do |post_image| %>
       <il class="card w-50 mx-auto mt-4 shadow-lg">
           <%= image_tag post_image.get_image, class:"card-img-top"; %>
@@ -14,13 +14,14 @@
                   <strong><i class="far fa-flag"></i><span><%= post_image.event_name %></span></strong>
               </p>
               <p class="card-text">宿泊日数：<%= post_image.genre.name %></p>
-              <p>
+              <p>カテゴリー：
                 <% if post_image.category.present? %>
                   <%= post_image.category%>
                 <% end %>
               </p>
-              <span><i class="fas fa-user"></i> By <%= post_image.user.name %> ｜ </span>
-              <span><%= link_to "#{post_image.post_comments.count} コメント", admin_post_image_path(post_image.id), class:"text-dark" %></span>
+              <span><i class="fas fa-user"></i> By <%= post_image.user.name %>｜</span>
+              <span><%= link_to "#{post_image.post_comments.count} コメント", admin_post_image_path(post_image.id), class:"text-dark" %>｜</span>
+              <span><%= link_to "投稿削除", admin_post_image_path(post_image), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger" %></span>
             </div>
           </div>
         </div>

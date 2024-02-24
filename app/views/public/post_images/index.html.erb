@@ -3,9 +3,9 @@
 </div>
 <div class="d-flex justify-content-center mb-2">
   <%= render "public/searches/form" %>
-  <!--タグ機能検索-->
+  <!--カテゴリー機能検索-->
   <% if user_signed_in? %>
-  　　<%= render 'public/tagsearches/tagsearch' %>
+    <%= render 'public/tagsearches/tagsearch' %>
   <% end %>
 </div>
 <div class="container py-5">
@@ -45,3 +45,11 @@
   </div>
   <%= paginate @post_images %>
 </div>
+<footer class="footer">
+  <div class="bottom bg-light-green">
+     <!--カラーを＃B6F1AAにした-->
+    <div class="text-center mb-auto pb-3 pt-3">
+      ©2024 sawada.和の旅行記.
+    </div>
+  </div>
+</footer>
