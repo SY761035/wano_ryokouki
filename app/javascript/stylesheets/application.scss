@@ -1,11 +1,17 @@
 @use '~bootstrap/scss/bootstrap';
 @use 'post_images.scss';
+
+// フォント変更
+header {
+  font-family: "Kaisei Tokumin", serif;
+}
+
 //
 .nav-item .li{
 font-size: 1.5em;
 }
 
-// フッターカラー
+// ヘッダ・フッターカラー
 .bg-light-green {
   background-color: #B6F1AA ;
 }
@@ -13,7 +19,7 @@ font-size: 1.5em;
 // トップページ
 body {
   font-size: 100%;
-  font-family: 'Heebo', sans-serif;
+  font-family: "Kaisei Tokumin", serif;
   letter-spacing: 0.2em;
 }
 img {

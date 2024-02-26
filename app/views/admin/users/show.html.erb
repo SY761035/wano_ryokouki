@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-6">
+    <div class="col-6 mx-auto">
       <h4 class="title bg-light"><strong><%= @user.name %>さんの詳細</strong></h4>
       <table class="table table-borderless">
         <tbody>
@@ -20,11 +20,11 @@
       </table>
     </div>
   </div>
-  <div class="row">
-    <div class="col-2 offset-2">
-      <%= link_to "退会させる",admin_user_path(@user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会させますか？", class: "btn btn-sm btn-danger" %>
+  <div class="row offset-2">
+    <div class="col-4">
+      <%= link_to "退会させる",admin_user_path(@user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会させますか？", class: "btn btn-danger px-3" %>
     </div>
-    <div class="col-3">
+    <div class="col-4">
       <%= link_to "投稿一覧を見る", admin_post_images_path(user_show_id: @user.id), class:'btn btn-primary px-3' %>
     </div>
   </div>

@@ -46,9 +46,9 @@ class Public::SessionsController < Devise::SessionsController
     return if @user.nil?
     return unless @user.valid_password?(params[:user][:password])
 
-     if @user == false
+    if @user == false
         redirect_to :new_user_session
-     end
+    end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
