@@ -21,7 +21,7 @@
 * 旅行先を決めるのに参考したい内容を知りたい時
 ​
 ## 設計書
-後ほど作成予定
+- テーブル定義書：https://docs.google.com/spreadsheets/d/1e-3n0i4yGBcMNkToU2RjIqiAXFPU9PW-/edit#gid=1229052192
 ​
 ## 開発環境
 - OS：Linux(CentOS)
