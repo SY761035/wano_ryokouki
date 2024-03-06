@@ -22,7 +22,7 @@
             </span>
           </p>
           <p class="card-title">
-            説明：<%= @post_image.caption %>
+            説明：<%= simple_format(@post_image.caption, sanitize: true) %>
           </p>
           <p class="card-title">
             <span><i class="fas fa-user"></i>By <%= @post_image.user.name %> ｜</span>

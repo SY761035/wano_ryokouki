@@ -1,6 +1,6 @@
 class Public::PostImagesController < ApplicationController
   before_action :authenticate_user!, except: [:top]
-  before_action :correct_post_image,only: [:edit,:update]
+  before_action :correct_post_image,only: [:edit,:update,:destroy]
 
   def new
     @post_image = PostImage.new
