@@ -4,7 +4,7 @@ class Admin::PostImagesController < ApplicationController
   def index
     # byebug
     @user = User.find(params[:user_show_id])
-    @post_images = @user.post_images.page(params[:page]).per(15)
+    @post_images = @user.post_images.page(params[:page]).per(15).order(created_at: :desc)
   end
   
   # コメント一覧表示
