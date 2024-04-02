@@ -9,6 +9,10 @@
             <td><%= @user.id %></td>
           </tr>
           <tr>
+            <th>プロフィール画像</th>
+            <td><%= image_tag @user.get_profile_image(100,100) %></td>
+          </tr>
+          <tr>
             <th>メールアドレス</th>
             <td><%= @user.email %></td>
           </tr>
