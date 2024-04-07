@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2024_02_19_072828) do
     t.text "caption"
     t.integer "user_id"
     t.integer "genre_id"
+    t.date "travel_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "category"

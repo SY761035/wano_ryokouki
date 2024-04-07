@@ -5,7 +5,8 @@ class CreatePostImages < ActiveRecord::Migration[6.1]
       t.text :caption
       t.integer :user_id
       t.integer :genre_id
-
+      t.date :travel_date
+      
       t.timestamps
     end
   end

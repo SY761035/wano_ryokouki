@@ -54,6 +54,6 @@ class Public::PostImagesController < ApplicationController
   end
 
   def post_image_params
-    params.require(:post_image).permit(:event_name, :image, :caption, :genre_id, :category)
+    params.require(:post_image).permit(:event_name, :image, :caption, :genre_id, :category, :travel_date)
   end
 end
