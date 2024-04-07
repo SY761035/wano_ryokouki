@@ -1,7 +1,7 @@
 <div>
   <%= flash[:notice] %>
 </div>
-<div class="d-flex justify-content-center mb-2">
+<div class="d-flex justify-content-center mb-2 offset-2">
   <%= render "public/searches/form" %>
   <!--カテゴリー機能検索-->
   <% if user_signed_in? %>
@@ -13,7 +13,6 @@
 <%= paginate @post_images %>
 <footer class="footer">
   <div class="bottom bg-light-green">
-     <!--カラーを＃B6F1AAにした-->
     <div class="text-center mb-auto pb-3 pt-3">
       ©2024 sawada.和の旅行記.
     </div>
