@@ -26,7 +26,8 @@
           </p>
           <p class="card-title">
             <span><i class="fas fa-user"></i>By <%= @post_image.user.name %> ｜</span>
-            <span><i class="fa fa-calendar"></i><%= @post_image.created_at.strftime('%Y/%m/%d') %> ｜</span>
+            <span><i class="fa fa-calendar"></i>投稿日:<%= @post_image.created_at.strftime('%Y/%m/%d') %> ｜</span>
+            <span><i class="fa-solid fa-camera-retro"></i>写真撮影日:<%= @post_image.travel_date.strftime('%Y/%m/%d') %> ｜</span>
             <span><i class="fa fa-comment"></i><%= link_to "#{@post_image.post_comments.count}", post_image_path(@post_image.id), class:"text-dark" %> ｜</span>
             <!--いいね機能-->
             <span id="favorite_btn_<%= @post_image.id %>">
