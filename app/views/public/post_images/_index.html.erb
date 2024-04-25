@@ -17,6 +17,7 @@
               <% end %>
             </p>
             <div class="card-text">
+              <p><i class="fa-solid fa-camera-retro"></i>旅行日:<%= post_image.travel_date.strftime('%Y/%m/%d') %></p>
               <p>宿泊日数：<%= post_image.genre.name %></p>
               <p>カテゴリー：
                 <% if post_image.category.present? %>
